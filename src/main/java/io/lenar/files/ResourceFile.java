@@ -23,10 +23,7 @@
  */
 package io.lenar.files;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,20 +35,21 @@ public class ResourceFile {
         this.fileName = fileName;
     }
 
-    public List<String> lines() throws IOException {
+    public List<String> lines() {
         return readLines();
     }
 
-    public String string() throws IOException {
+    public String string() {
         return readLines().stream().collect(Collectors.joining("\n"));
     }
 
-    private List<String> readLines() throws IOException {
+    private List<String> readLines() {
         InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        List<String> result = reader.lines().collect(Collectors.toList());
-        reader.close();
-        return result;
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            return reader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
 }
