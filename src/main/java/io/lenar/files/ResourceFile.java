@@ -39,14 +39,29 @@ public class ResourceFile {
         return readLines();
     }
 
-    public String string() {
-        return readLines().stream().collect(Collectors.joining("\n"));
+    public String content() {
+        return readContent();
     }
 
     private List<String> readLines() {
         InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             return reader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private String readContent() {
+        InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
+
+        try (ByteArrayOutputStream result = new ByteArrayOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) != -1) {
+                result.write(buffer, 0, length);
+            }
+            return result.toString();
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
