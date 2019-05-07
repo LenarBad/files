@@ -44,8 +44,9 @@ public class ResourceFile {
     }
 
     private List<String> readLines() {
-        InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
             return reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
             throw new UncheckedIOException(e);
@@ -53,9 +54,9 @@ public class ResourceFile {
     }
 
     private String readContent() {
-        InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
+        try (InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
+             ByteArrayOutputStream result = new ByteArrayOutputStream()) {
 
-        try (ByteArrayOutputStream result = new ByteArrayOutputStream()) {
             byte[] buffer = new byte[1024];
             int length;
             while ((length = inputStream.read(buffer)) != -1) {
