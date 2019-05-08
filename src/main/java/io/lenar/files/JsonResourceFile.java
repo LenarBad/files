@@ -25,26 +25,28 @@ package io.lenar.files;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import io.lenar.files.base.BaseResourceFile;
+import io.lenar.files.interfaces.EzJsonFile;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class JsonResourceFile extends ResourceFile {
+public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
 
     public JsonResourceFile(String fileName) {
         super(fileName);
     }
 
     public <T> T fromJson(Class<T> clazz) {
-        return new Gson().fromJson(content(), clazz);
+        return new Gson().fromJson(readContent(), clazz);
     }
 
     public <T> T fromJson(Type typeOfT) {
-        return new Gson().fromJson(content(), typeOfT);
+        return new Gson().fromJson(readContent(), typeOfT);
     }
 
     public <T> List<T> fromJsonAsList() {
-        return new Gson().fromJson(content(), new TypeToken<List<T>>(){}.getType());
+        return new Gson().fromJson(readContent(), new TypeToken<List<T>>(){}.getType());
     }
 
 }

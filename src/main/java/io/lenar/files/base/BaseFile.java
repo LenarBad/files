@@ -21,25 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.lenar.files;
+package io.lenar.files.base;
 
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzFile;
-
+import java.io.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ResourceFile extends BaseResourceFile implements EzFile {
+public abstract class BaseFile {
 
-    public ResourceFile(String fileName) {
-        super(fileName);
+    protected abstract InputStream getStream() throws FileNotFoundException;
+
+    protected List<String> readLines() {
+        try (InputStream inputStream = getStream();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+            return reader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
-    public List<String> lines() {
-        return readLines();
-    }
+    protected String readContent() {
+        try (InputStream inputStream = getStream();
+             ByteArrayOutputStream result = new ByteArrayOutputStream()) {
 
-    public String content() {
-        return readContent();
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inputStream.read(buffer)) != -1) {
+                result.write(buffer, 0, length);
+            }
+            return result.toString();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
 }

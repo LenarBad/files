@@ -23,23 +23,14 @@
  */
 package io.lenar.files;
 
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzFile;
+import java.io.FileNotFoundException;
 
-import java.util.List;
+public class UserHomeFile extends UserFile {
 
-public class ResourceFile extends BaseResourceFile implements EzFile {
+    private static final String USER_HOME_DIR = System.getProperty("user.home");
 
-    public ResourceFile(String fileName) {
-        super(fileName);
-    }
-
-    public List<String> lines() {
-        return readLines();
-    }
-
-    public String content() {
-        return readContent();
+    public UserHomeFile(String fileName) throws FileNotFoundException {
+        super(USER_HOME_DIR, fileName);
     }
 
 }

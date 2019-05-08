@@ -21,25 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.lenar.files;
-
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzFile;
+package io.lenar.files.interfaces;
 
 import java.util.List;
 
-public class ResourceFile extends BaseResourceFile implements EzFile {
+public interface EzFile {
 
-    public ResourceFile(String fileName) {
-        super(fileName);
-    }
+    String content();
 
-    public List<String> lines() {
-        return readLines();
-    }
-
-    public String content() {
-        return readContent();
-    }
+    List<String> lines();
 
 }

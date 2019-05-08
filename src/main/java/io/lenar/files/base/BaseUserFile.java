@@ -21,25 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.lenar.files;
+package io.lenar.files.base;
 
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzFile;
+import java.io.*;
 
-import java.util.List;
+public abstract class BaseUserFile extends BaseFile {
 
-public class ResourceFile extends BaseResourceFile implements EzFile {
+    protected final File file;
 
-    public ResourceFile(String fileName) {
-        super(fileName);
+    public BaseUserFile(String fullFileName) throws FileNotFoundException {
+        this.file = getFile(fullFileName);
     }
 
-    public List<String> lines() {
-        return readLines();
+    public BaseUserFile(String path, String fileName) throws FileNotFoundException {
+        this.file = getFile(path, fileName);
     }
 
-    public String content() {
-        return readContent();
+    @Override
+    protected InputStream getStream() throws FileNotFoundException {
+        return new FileInputStream(this.file);
+    }
+
+    private File getFile(String fullFileName) throws FileNotFoundException {
+        File file = new File(fullFileName).getAbsoluteFile();
+        if (!file.exists()) {
+            throw new FileNotFoundException("Couldn't find property file " + fullFileName);
+        }
+        return file;
+    }
+
+    private File getFile(String parent, String child) throws FileNotFoundException {
+        File file = new File(parent, child).getAbsoluteFile();
+        if (!file.exists()) {
+            throw new FileNotFoundException("Couldn't find property file " + parent + child);
+        }
+        return file;
     }
 
 }

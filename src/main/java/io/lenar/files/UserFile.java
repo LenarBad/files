@@ -23,15 +23,20 @@
  */
 package io.lenar.files;
 
-import io.lenar.files.base.BaseResourceFile;
+import io.lenar.files.base.BaseUserFile;
 import io.lenar.files.interfaces.EzFile;
 
+import java.io.*;
 import java.util.List;
 
-public class ResourceFile extends BaseResourceFile implements EzFile {
+public class UserFile extends BaseUserFile implements EzFile  {
 
-    public ResourceFile(String fileName) {
-        super(fileName);
+    public UserFile(String fullFileName) throws FileNotFoundException {
+        super(fullFileName);
+    }
+
+    public UserFile(String path, String fileName) throws FileNotFoundException {
+        super(path, fileName);
     }
 
     public List<String> lines() {
@@ -41,5 +46,9 @@ public class ResourceFile extends BaseResourceFile implements EzFile {
     public String content() {
         return readContent();
     }
+
+
+
+
 
 }
