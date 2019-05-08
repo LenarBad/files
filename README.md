@@ -1,6 +1,6 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.lenar/files.svg)](https://maven-badges.herokuapp.com/maven-central/io.lenar/files)
 
-# files
+# Easy Files
 
 
 Read files in the ```resources``` folder just like this
@@ -9,10 +9,26 @@ Read files in the ```resources``` folder just like this
 String content = new ResourceFile("my-file.json").string();
 ```
 
-or
+or like this
 
 ```java
 List<String> lines = new ResourceFile("my-file.txt").lines();
 ```
 
-No matter it's in the File System or in the Jar
+or even like this
+
+```java
+Book book = new JsonResourceFile("my-book.json").fromJson(Book.class);
+```
+
+No matter it's in the File System or in the Jar.
+
+All you need is to add the Maven dependency
+
+```xml
+    <dependency>
+        <groupId>io.lenar</groupId>
+        <artifactId>files</artifactId>
+        <version>1.1.0</version>
+    </dependency>
+```
