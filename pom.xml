@@ -7,8 +7,8 @@
     <version>1.1.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Files</name>
-    <description>Manages files</description>
+    <name>Easy Files</name>
+    <description>Read files with easy... with Easy Files</description>
     <url>https://github.com/LenarBad/files</url>
 
     <parent>
