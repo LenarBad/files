@@ -35,6 +35,6 @@ All you need is to add the Maven dependency
     <dependency>
         <groupId>io.lenar</groupId>
         <artifactId>files</artifactId>
-        <version>1.1.0</version>
+        <version>1.2.2</version>
     </dependency>
 ```
