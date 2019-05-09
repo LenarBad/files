@@ -23,33 +23,17 @@
  */
 package io.lenar.files;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzJsonFile;
-
-import java.lang.reflect.Type;
-import java.util.List;
+import java.io.FileNotFoundException;
 
 /**
- * Provides the functionality for reading JSON files in the resources folder
+ * Provides the functionality for reading regular files in the user home folder
  */
-public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
+public class UserHomeFile extends UserFile {
 
-    public JsonResourceFile(String fileName) {
-        super(fileName);
-    }
+    private static final String USER_HOME_DIR = System.getProperty("user.home");
 
-    public <T> T fromJson(Class<T> clazz) {
-        return new Gson().fromJson(readContent(), clazz);
-    }
-
-    public <T> T fromJson(Type typeOfT) {
-        return new Gson().fromJson(readContent(), typeOfT);
-    }
-
-    public <T> List<T> fromJsonAsList() {
-        return new Gson().fromJson(readContent(), new TypeToken<List<T>>(){}.getType());
+    public UserHomeFile(String fileName) throws FileNotFoundException {
+        super(USER_HOME_DIR, fileName);
     }
 
 }

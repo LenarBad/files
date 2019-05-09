@@ -21,35 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.lenar.files;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzJsonFile;
+package io.lenar.files.interfaces;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Provides the functionality for reading JSON files in the resources folder
+ * Interface for reading JSON files
  */
-public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
+public interface EzJsonFile {
 
-    public JsonResourceFile(String fileName) {
-        super(fileName);
-    }
+    <T> T fromJson(Class<T> clazz);
 
-    public <T> T fromJson(Class<T> clazz) {
-        return new Gson().fromJson(readContent(), clazz);
-    }
+    <T> T fromJson(Type typeOfT);
 
-    public <T> T fromJson(Type typeOfT) {
-        return new Gson().fromJson(readContent(), typeOfT);
-    }
-
-    public <T> List<T> fromJsonAsList() {
-        return new Gson().fromJson(readContent(), new TypeToken<List<T>>(){}.getType());
-    }
+    <T> List<T> fromJsonAsList();
 
 }

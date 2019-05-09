@@ -23,33 +23,35 @@
  */
 package io.lenar.files;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzJsonFile;
+import io.lenar.files.base.BaseUserFile;
+import io.lenar.files.interfaces.EzFile;
 
-import java.lang.reflect.Type;
+import java.io.*;
 import java.util.List;
 
 /**
- * Provides the functionality for reading JSON files in the resources folder
+ * Provides the functionality for reading regular files in any location in the file system
  */
-public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
+public class UserFile extends BaseUserFile implements EzFile  {
 
-    public JsonResourceFile(String fileName) {
-        super(fileName);
+    public UserFile(String fullFileName) throws FileNotFoundException {
+        super(fullFileName);
     }
 
-    public <T> T fromJson(Class<T> clazz) {
-        return new Gson().fromJson(readContent(), clazz);
+    public UserFile(String path, String fileName) throws FileNotFoundException {
+        super(path, fileName);
     }
 
-    public <T> T fromJson(Type typeOfT) {
-        return new Gson().fromJson(readContent(), typeOfT);
+    public List<String> lines() {
+        return readLines();
     }
 
-    public <T> List<T> fromJsonAsList() {
-        return new Gson().fromJson(readContent(), new TypeToken<List<T>>(){}.getType());
+    public String content() {
+        return readContent();
     }
+
+
+
+
 
 }

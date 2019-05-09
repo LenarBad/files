@@ -23,16 +23,18 @@
  */
 package io.lenar.files;
 
-import java.io.*;
+import io.lenar.files.base.BaseResourceFile;
+import io.lenar.files.interfaces.EzFile;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ResourceFile {
-
-    private final String fileName;
+/**
+ * Provides the functionality for reading regular files in the resources folder
+ */
+public class ResourceFile extends BaseResourceFile implements EzFile {
 
     public ResourceFile(String fileName) {
-        this.fileName = fileName;
+        super(fileName);
     }
 
     public List<String> lines() {
@@ -41,31 +43,6 @@ public class ResourceFile {
 
     public String content() {
         return readContent();
-    }
-
-    private List<String> readLines() {
-        try (InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-
-            return reader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
-    }
-
-    private String readContent() {
-        try (InputStream inputStream = ResourceFile.class.getResourceAsStream("/" + fileName);
-             ByteArrayOutputStream result = new ByteArrayOutputStream()) {
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = inputStream.read(buffer)) != -1) {
-                result.write(buffer, 0, length);
-            }
-            return result.toString();
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
-        }
     }
 
 }
