@@ -31,6 +31,9 @@ import io.lenar.files.interfaces.EzJsonFile;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ * Provides the functionality for reading JSON files in the resources folder
+ */
 public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
 
     public JsonResourceFile(String fileName) {

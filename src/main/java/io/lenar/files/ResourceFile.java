@@ -28,6 +28,9 @@ import io.lenar.files.interfaces.EzFile;
 
 import java.util.List;
 
+/**
+ * Provides the functionality for reading regular files in the resources folder
+ */
 public class ResourceFile extends BaseResourceFile implements EzFile {
 
     public ResourceFile(String fileName) {

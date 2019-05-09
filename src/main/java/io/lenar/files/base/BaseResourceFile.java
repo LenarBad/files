@@ -27,6 +27,10 @@ import io.lenar.files.ResourceFile;
 
 import java.io.InputStream;
 
+/**
+ * Abstract
+ * Implements the functionality for reading files in resources folder
+ */
 public abstract class BaseResourceFile extends BaseFile {
 
     private final String fileName;

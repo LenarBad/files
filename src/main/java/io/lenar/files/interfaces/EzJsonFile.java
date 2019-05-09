@@ -26,6 +26,9 @@ package io.lenar.files.interfaces;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ * Interface for reading JSON files
+ */
 public interface EzJsonFile {
 
     <T> T fromJson(Class<T> clazz);

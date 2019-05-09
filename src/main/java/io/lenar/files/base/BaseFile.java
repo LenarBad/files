@@ -27,6 +27,11 @@ import java.io.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Abstract
+ * BaseFile provides the functionality for reading file content as String or list of String
+ * Requires InputStream getStream() to be implemented
+ */
 public abstract class BaseFile {
 
     protected abstract InputStream getStream() throws FileNotFoundException;

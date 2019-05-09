@@ -25,6 +25,9 @@ package io.lenar.files.interfaces;
 
 import java.util.List;
 
+/**
+ * Interface for reading regular files
+ */
 public interface EzFile {
 
     String content();

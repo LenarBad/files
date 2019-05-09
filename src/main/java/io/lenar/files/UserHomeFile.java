@@ -25,6 +25,9 @@ package io.lenar.files;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Provides the functionality for reading regular files in the user home folder
+ */
 public class UserHomeFile extends UserFile {
 
     private static final String USER_HOME_DIR = System.getProperty("user.home");

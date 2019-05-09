@@ -29,6 +29,9 @@ import io.lenar.files.interfaces.EzFile;
 import java.io.*;
 import java.util.List;
 
+/**
+ * Provides the functionality for reading regular files in any location in the file system
+ */
 public class UserFile extends BaseUserFile implements EzFile  {
 
     public UserFile(String fullFileName) throws FileNotFoundException {

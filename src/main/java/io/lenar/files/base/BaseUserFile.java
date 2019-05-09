@@ -25,6 +25,10 @@ package io.lenar.files.base;
 
 import java.io.*;
 
+/**
+ * Abstract
+ * Implements the functionality for reading files in any location in the file system
+ */
 public abstract class BaseUserFile extends BaseFile {
 
     protected final File file;
