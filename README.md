@@ -15,10 +15,16 @@ or like this
 List<String> lines = new ResourceFile("my-file.txt").lines();
 ```
 
-or even like this
+or like this
 
 ```java
 Book book = new JsonResourceFile("my-book.json").fromJson(Book.class);
+```
+
+or even like this
+
+```java
+List<Book> books = new JsonResourceFile("books.json").fromJsonAsList(Book[].class);
 ```
 
 No matter it's in the File System or in the Jar.

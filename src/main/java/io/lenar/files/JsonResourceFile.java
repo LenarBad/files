@@ -29,6 +29,8 @@ import io.lenar.files.base.BaseResourceFile;
 import io.lenar.files.interfaces.EzJsonFile;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -48,8 +50,8 @@ public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
         return new Gson().fromJson(readContent(), typeOfT);
     }
 
-    public <T> List<T> fromJsonAsList() {
-        return new Gson().fromJson(readContent(), new TypeToken<List<T>>(){}.getType());
+    public <T> List<T> fromJsonAsList(Class<T[]> clazz) {
+        return Arrays.asList(new Gson().fromJson(readContent(), clazz));
     }
 
 }

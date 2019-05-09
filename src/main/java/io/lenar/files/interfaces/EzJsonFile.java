@@ -35,6 +35,6 @@ public interface EzJsonFile {
 
     <T> T fromJson(Type typeOfT);
 
-    <T> List<T> fromJsonAsList();
+    <T> List<T> fromJsonAsList(Class<T[]> clazz);
 
 }
