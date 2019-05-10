@@ -26,6 +26,7 @@ package io.lenar.files;
 import io.lenar.files.base.BaseResourceFile;
 import io.lenar.files.interfaces.EzFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -37,11 +38,11 @@ public class ResourceFile extends BaseResourceFile implements EzFile {
         super(fileName);
     }
 
-    public List<String> lines() {
+    public List<String> lines() throws IOException {
         return readLines();
     }
 
-    public String content() {
+    public String content() throws IOException {
         return readContent();
     }
 

@@ -23,6 +23,7 @@
  */
 package io.lenar.files.interfaces;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -31,10 +32,10 @@ import java.util.List;
  */
 public interface EzJsonFile {
 
-    <T> T fromJson(Class<T> clazz);
+    <T> T fromJson(Class<T> clazz) throws IOException;
 
-    <T> T fromJson(Type typeOfT);
+    <T> T fromJson(Type typeOfT) throws IOException;
 
-    <T> List<T> fromJsonAsList(Class<T[]> clazz);
+    <T> List<T> fromJsonAsList(Class<T[]> clazz) throws IOException;
 
 }

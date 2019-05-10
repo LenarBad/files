@@ -23,6 +23,7 @@
  */
 package io.lenar.files.interfaces;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -30,8 +31,8 @@ import java.util.List;
  */
 public interface EzFile {
 
-    String content();
+    String content() throws IOException;
 
-    List<String> lines();
+    List<String> lines() throws IOException;
 
 }

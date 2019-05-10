@@ -42,16 +42,12 @@ public class UserFile extends BaseUserFile implements EzFile  {
         super(path, fileName);
     }
 
-    public List<String> lines() {
+    public List<String> lines() throws IOException {
         return readLines();
     }
 
-    public String content() {
+    public String content() throws IOException {
         return readContent();
     }
-
-
-
-
 
 }
