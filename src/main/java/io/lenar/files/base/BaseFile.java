@@ -39,7 +39,7 @@ public abstract class BaseFile {
     protected abstract InputStream getStream() throws FileNotFoundException;
 
     protected List<String> readLines() throws IOException {
-        // Using try-catch just for safely closing resources in case of IOException.
+        // Using try-catch just for safe closing resources in case of IOException.
         try (InputStream inputStream = getStream();
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
@@ -50,6 +50,7 @@ public abstract class BaseFile {
     }
 
     protected String readContent() throws IOException {
+        // Using try-catch just for safe closing resources in case of IOException.
         try (InputStream inputStream = getStream();
              ByteArrayOutputStream result = new ByteArrayOutputStream()) {
 
