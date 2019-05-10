@@ -32,7 +32,7 @@ public class UserHomeFile extends UserFile {
 
     private static final String USER_HOME_DIR = System.getProperty("user.home");
 
-    public UserHomeFile(String fileName) throws FileNotFoundException {
+    public UserHomeFile(String fileName) {
         super(USER_HOME_DIR, fileName);
     }
 

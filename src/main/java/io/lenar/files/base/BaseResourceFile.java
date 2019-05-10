@@ -25,6 +25,7 @@ package io.lenar.files.base;
 
 import io.lenar.files.ResourceFile;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
@@ -40,8 +41,12 @@ public abstract class BaseResourceFile extends BaseFile {
     }
 
     @Override
-    protected InputStream getStream() {
-        return ResourceFile.class.getResourceAsStream("/" + fileName);
+    protected InputStream getStream() throws FileNotFoundException {
+        InputStream stream = ResourceFile.class.getResourceAsStream("/" + fileName);
+        if (stream == null) {
+            throw new FileNotFoundException("Couldn't find resource " + fileName);
+        }
+        return stream;
     }
 
 }

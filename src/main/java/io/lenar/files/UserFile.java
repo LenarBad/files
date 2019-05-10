@@ -34,24 +34,20 @@ import java.util.List;
  */
 public class UserFile extends BaseUserFile implements EzFile  {
 
-    public UserFile(String fullFileName) throws FileNotFoundException {
+    public UserFile(String fullFileName) {
         super(fullFileName);
     }
 
-    public UserFile(String path, String fileName) throws FileNotFoundException {
+    public UserFile(String path, String fileName) {
         super(path, fileName);
     }
 
-    public List<String> lines() {
+    public List<String> lines() throws IOException {
         return readLines();
     }
 
-    public String content() {
+    public String content() throws IOException {
         return readContent();
     }
-
-
-
-
 
 }

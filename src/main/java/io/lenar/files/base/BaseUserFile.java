@@ -33,11 +33,11 @@ public abstract class BaseUserFile extends BaseFile {
 
     protected final File file;
 
-    public BaseUserFile(String fullFileName) throws FileNotFoundException {
+    public BaseUserFile(String fullFileName) {
         this.file = getFile(fullFileName);
     }
 
-    public BaseUserFile(String path, String fileName) throws FileNotFoundException {
+    public BaseUserFile(String path, String fileName) {
         this.file = getFile(path, fileName);
     }
 
@@ -46,20 +46,12 @@ public abstract class BaseUserFile extends BaseFile {
         return new FileInputStream(this.file);
     }
 
-    private File getFile(String fullFileName) throws FileNotFoundException {
-        File file = new File(fullFileName).getAbsoluteFile();
-        if (!file.exists()) {
-            throw new FileNotFoundException("Couldn't find property file " + fullFileName);
-        }
-        return file;
+    private File getFile(String fullFileName) {
+        return new File(fullFileName).getAbsoluteFile();
     }
 
-    private File getFile(String parent, String child) throws FileNotFoundException {
-        File file = new File(parent, child).getAbsoluteFile();
-        if (!file.exists()) {
-            throw new FileNotFoundException("Couldn't find property file " + parent + child);
-        }
-        return file;
+    private File getFile(String parent, String child) {
+        return new File(parent, child).getAbsoluteFile();
     }
 
 }

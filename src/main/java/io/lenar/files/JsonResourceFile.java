@@ -28,8 +28,8 @@ import com.google.gson.reflect.TypeToken;
 import io.lenar.files.base.BaseResourceFile;
 import io.lenar.files.interfaces.EzJsonFile;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,15 +42,15 @@ public class JsonResourceFile extends BaseResourceFile implements EzJsonFile {
         super(fileName);
     }
 
-    public <T> T fromJson(Class<T> clazz) {
+    public <T> T fromJson(Class<T> clazz) throws IOException {
         return new Gson().fromJson(readContent(), clazz);
     }
 
-    public <T> T fromJson(Type typeOfT) {
+    public <T> T fromJson(Type typeOfT) throws IOException {
         return new Gson().fromJson(readContent(), typeOfT);
     }
 
-    public <T> List<T> fromJsonAsList(Class<T[]> clazz) {
+    public <T> List<T> fromJsonAsList(Class<T[]> clazz) throws IOException {
         return Arrays.asList(new Gson().fromJson(readContent(), clazz));
     }
 

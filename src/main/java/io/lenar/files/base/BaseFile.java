@@ -38,17 +38,19 @@ public abstract class BaseFile {
 
     protected abstract InputStream getStream() throws FileNotFoundException;
 
-    protected List<String> readLines() {
+    protected List<String> readLines() throws IOException {
+        // Using try-catch just for safe closing resources in case of IOException.
         try (InputStream inputStream = getStream();
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
 
             return reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            throw e;
         }
     }
 
-    protected String readContent() {
+    protected String readContent() throws IOException {
+        // Using try-catch just for safe closing resources in case of IOException.
         try (InputStream inputStream = getStream();
              ByteArrayOutputStream result = new ByteArrayOutputStream()) {
 
@@ -59,7 +61,7 @@ public abstract class BaseFile {
             }
             return result.toString();
         } catch (IOException e) {
-            throw new UncheckedIOException(e);
+            throw e;
         }
     }
 
