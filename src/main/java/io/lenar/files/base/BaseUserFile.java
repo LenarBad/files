@@ -49,7 +49,7 @@ public abstract class BaseUserFile extends BaseFile {
     private File getFile(String fullFileName) throws FileNotFoundException {
         File file = new File(fullFileName).getAbsoluteFile();
         if (!file.exists()) {
-            throw new FileNotFoundException("Couldn't find property file " + fullFileName);
+            throw new FileNotFoundException("Couldn't find file " + fullFileName);
         }
         return file;
     }
@@ -57,7 +57,7 @@ public abstract class BaseUserFile extends BaseFile {
     private File getFile(String parent, String child) throws FileNotFoundException {
         File file = new File(parent, child).getAbsoluteFile();
         if (!file.exists()) {
-            throw new FileNotFoundException("Couldn't find property file " + parent + child);
+            throw new FileNotFoundException("Couldn't find file " + parent + child);
         }
         return file;
     }
