@@ -2,34 +2,13 @@
 
 # Easy Files
 
-
-Read files in the ```resources``` folder just like this
-
-```java
-String content = new ResourceFile("my-file.json").string();
-```
-
-or like this
-
-```java
-List<String> lines = new ResourceFile("my-file.txt").lines();
-```
-
-or like this
-
-```java
-Book book = new JsonResourceFile("my-book.json").fromJson(Book.class);
-```
-
-or even like this
-
-```java
-List<Book> books = new JsonResourceFile("books.json").fromJsonAsList(Book[].class);
-```
-
-No matter it's in the File System or in the Jar.
-
-All you need is to add the Maven dependency
+* [Maven dependency](#maven-dependency)
+* [Resources folder files - ResourceFile, JsonResourceFile](#resources-folder-files---resourcefile-jsonresourcefile)
+  * [Examples](#resource-file-examples)
+* [Regular files in File System - UserFiles, UserHomeFile](#regular-files-in-file-system---userfiles-userhomefile)
+  * [Examples](#regular-file-examples)
+  
+## Maven dependency
 
 ```xml
     <dependency>
@@ -37,4 +16,54 @@ All you need is to add the Maven dependency
         <artifactId>files</artifactId>
         <version>1.2.4</version>
     </dependency>
+```
+
+## Resources folder files - ResourceFile, JsonResourceFile
+
+Reading files in the ```resources``` folder
+
+No matter if the resource files are in the File System or in the Jar.
+
+### Resource file examples
+
+#### As String
+
+```java
+String content = new ResourceFile("my-file.json").content();
+```
+
+#### As List of Strings
+
+```java
+List<String> lines = new ResourceFile("my-file.txt").lines();
+```
+
+#### As object 
+
+```java
+Book book = new JsonResourceFile("my-book.json").fromJson(Book.class);
+```
+
+#### As list of objects
+
+```java
+List<Book> books = new JsonResourceFile("books.json").fromJsonAsList(Book[].class);
+```
+
+## Regular files in File System - UserFiles, UserHomeFile
+
+### Regular file examples
+
+#### As String
+
+```java
+String myFileContent = new UserFile("c:/myfiles/myfile.txt").content();
+String myUserHomeFileContent = new UserHomeFile("my-user-home-test.txt").content();
+```
+ 
+#### As List of Strings 
+
+```java
+List<String> myFileLines = new UserFile("my-file.txt").lines();
+List<String> myUserHomeFileLines = new UserHomeFile("my-user-home-test.txt").lines();
 ```
