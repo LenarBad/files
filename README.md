@@ -26,27 +26,13 @@ No matter if the resource files are in the File System or in the Jar.
 
 ### Resource file examples
 
-#### As String
-
 ```java
 String content = new ResourceFile("my-file.json").content();
-```
 
-#### As List of Strings
-
-```java
 List<String> lines = new ResourceFile("my-file.txt").lines();
-```
 
-#### As object 
-
-```java
 Book book = new JsonResourceFile("my-book.json").fromJson(Book.class);
-```
 
-#### As list of objects
-
-```java
 List<Book> books = new JsonResourceFile("books.json").fromJsonAsList(Book[].class);
 ```
 
@@ -54,16 +40,10 @@ List<Book> books = new JsonResourceFile("books.json").fromJsonAsList(Book[].clas
 
 ### Regular file examples
 
-#### As String
-
 ```java
 String myFileContent = new UserFile("c:/myfiles/myfile.txt").content();
 String myUserHomeFileContent = new UserHomeFile("my-user-home-test.txt").content();
-```
- 
-#### As List of Strings 
 
-```java
 List<String> myFileLines = new UserFile("my-file.txt").lines();
 List<String> myUserHomeFileLines = new UserHomeFile("my-user-home-test.txt").lines();
 ```
