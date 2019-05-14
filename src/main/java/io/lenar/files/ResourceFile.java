@@ -23,27 +23,27 @@
  */
 package io.lenar.files;
 
-import io.lenar.files.base.BaseResourceFile;
-import io.lenar.files.interfaces.EzFile;
-
-import java.io.IOException;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
- * Provides the functionality for reading regular files in the resources folder
+ * Implements the functionality for reading files in resources folder
  */
-public class ResourceFile extends BaseResourceFile implements EzFile {
+public class ResourceFile extends BaseFile {
+
+    private final String fileName;
 
     public ResourceFile(String fileName) {
-        super(fileName);
+        this.fileName = fileName;
     }
 
-    public List<String> lines() throws IOException {
-        return readLines();
-    }
-
-    public String content() throws IOException {
-        return readContent();
+    @Override
+    protected InputStream getStream() throws FileNotFoundException {
+        InputStream stream = ResourceFile.class.getResourceAsStream("/" + fileName);
+        if (stream == null) {
+            throw new FileNotFoundException("Couldn't find resource " + fileName);
+        }
+        return stream;
     }
 
 }

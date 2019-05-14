@@ -23,8 +23,6 @@
  */
 package io.lenar.files;
 
-import java.io.FileNotFoundException;
-
 /**
  * Provides the functionality for reading regular files in the user home folder
  */
