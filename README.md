@@ -3,10 +3,9 @@
 # Easy Files
 
 * [Maven dependency](#maven-dependency)
-* [Resources folder files - ResourceFile, JsonResourceFile](#resources-folder-files---resourcefile-jsonresourcefile)
-  * [Examples](#resource-file-examples)
+* [Resources folder files - ResourceFile](#resources-folder-files---resourcefile)
 * [Regular files in File System - UserFiles, UserHomeFile](#regular-files-in-file-system---userfiles-userhomefile)
-  * [Examples](#regular-file-examples)
+* [Read file examples](#read-file-examples)
   
 ## Maven dependency
 
@@ -14,36 +13,35 @@
     <dependency>
         <groupId>io.lenar</groupId>
         <artifactId>files</artifactId>
-        <version>1.2.4</version>
+        <version>1.3.0</version>
     </dependency>
 ```
 
-## Resources folder files - ResourceFile, JsonResourceFile
+## Resources folder files - ResourceFile
 
 Reading files in the ```resources``` folder
 
 No matter if the resource files are in the File System or in the Jar.
 
-### Resource file examples
-
 ```java
-String content = new ResourceFile("my-file.json").content();
-
-List<String> lines = new ResourceFile("my-file.txt").lines();
-
-Book book = new JsonResourceFile("my-book.json").fromJson(Book.class);
-
-List<Book> books = new JsonResourceFile("books.json").fromJsonAsList(Book[].class);
+ResourceFile file = new ResourceFile("my-file.json");
 ```
 
 ## Regular files in File System - UserFiles, UserHomeFile
 
-### Regular file examples
+```java
+UserFile file = new UserFile("c:/myfiles/myfile.txt");
+```
 
 ```java
-String myFileContent = new UserFile("c:/myfiles/myfile.txt").content();
-String myUserHomeFileContent = new UserHomeFile("my-user-home-test.txt").content();
+UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
+```
 
-List<String> myFileLines = new UserFile("my-file.txt").lines();
-List<String> myUserHomeFileLines = new UserHomeFile("my-user-home-test.txt").lines();
+## Read file examples
+
+```java
+String content = file.content();
+List<String> lines = file.lines();
+Book book = file.fromJson(Book.class);
+List<Book> books = file.fromJsonAsList(Book[].class);
 ```
