@@ -23,31 +23,37 @@
  */
 package io.lenar.files;
 
-import io.lenar.files.base.BaseUserFile;
-import io.lenar.files.interfaces.EzFile;
-
-import java.io.*;
-import java.util.List;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 /**
- * Provides the functionality for reading regular files in any location in the file system
+ * Implements the functionality for reading files in any location in the file system
  */
-public class UserFile extends BaseUserFile implements EzFile  {
+public class UserFile extends BaseFile {
+
+    private final File file;
 
     public UserFile(String fullFileName) {
-        super(fullFileName);
+        this.file = getFile(fullFileName);
     }
 
     public UserFile(String path, String fileName) {
-        super(path, fileName);
+        this.file = getFile(path, fileName);
     }
 
-    public List<String> lines() throws IOException {
-        return readLines();
+    @Override
+    protected InputStream getStream() throws FileNotFoundException {
+        return new FileInputStream(this.file);
     }
 
-    public String content() throws IOException {
-        return readContent();
+    private File getFile(String fullFileName) {
+        return new File(fullFileName).getAbsoluteFile();
+    }
+
+    private File getFile(String parent, String child) {
+        return new File(parent, child).getAbsoluteFile();
     }
 
 }

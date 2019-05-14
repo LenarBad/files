@@ -21,9 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package io.lenar.files.base;
+package io.lenar.files;
+
+import com.google.gson.Gson;
 
 import java.io.*;
+import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,18 +42,23 @@ public abstract class BaseFile {
 
     protected abstract InputStream getStream() throws FileNotFoundException;
 
-    protected List<String> readLines() throws IOException {
-        // Using try-catch just for safe closing resources in case of IOException.
-        try (InputStream inputStream = getStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
-
-            return reader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            throw e;
-        }
+    public String content() throws IOException {
+        return readContent();
     }
 
-    protected String readContent() throws IOException {
+    public List<String> lines() throws IOException {
+        return readLines();
+    }
+
+    public <T> T fromJson(Class<T> clazz) throws IOException {
+        return new Gson().fromJson(content(), clazz);
+    }
+
+    public <T> List<T> fromJsonAsList(Class<T[]> clazz) throws IOException {
+        return Arrays.asList(new Gson().fromJson(content(), clazz));
+    }
+
+    private String readContent() throws IOException {
         // Using try-catch just for safe closing resources in case of IOException.
         try (InputStream inputStream = getStream();
              ByteArrayOutputStream result = new ByteArrayOutputStream()) {
@@ -60,6 +69,17 @@ public abstract class BaseFile {
                 result.write(buffer, 0, length);
             }
             return result.toString();
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
+    private List<String> readLines() throws IOException {
+        // Using try-catch just for safe closing resources in case of IOException.
+        try (InputStream inputStream = getStream();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+            return reader.lines().collect(Collectors.toList());
         } catch (IOException e) {
             throw e;
         }
