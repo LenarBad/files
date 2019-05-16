@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +48,12 @@ public abstract class BaseFile {
 
     public List<String> lines() throws IOException {
         return readLines();
+    }
+
+    public Properties properties() throws IOException {
+        Properties properties = new Properties();
+        properties.load(new StringReader(readContent()));
+        return properties;
     }
 
     public <T> T fromJson(Class<T> clazz) throws IOException {

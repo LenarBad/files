@@ -19,4 +19,9 @@ public class UserFileTest {
         new UserFile(NON_EXISTING_TEST_RESOURCE_FILE).lines();
     }
 
+    @Test(expectedExceptions = FileNotFoundException.class)
+    public void fileNotFoundExceptionOnPropertiesTest() throws IOException {
+        new UserFile(NON_EXISTING_TEST_RESOURCE_FILE).properties();
+    }
+
 }
