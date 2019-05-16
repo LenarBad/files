@@ -44,4 +44,5 @@ String content = file.content();
 List<String> lines = file.lines();
 Book book = file.fromJson(Book.class);
 List<Book> books = file.fromJsonAsList(Book[].class);
+Properties properties = file.properties();
 ```
