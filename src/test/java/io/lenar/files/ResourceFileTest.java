@@ -5,12 +5,14 @@ import org.testng.annotations.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import static org.testng.Assert.*;
 
 public class ResourceFileTest {
 
     private static final String TEST_RESOURCE_FILE = "test.txt";
+    private static final String TEST_RESOURCE_PROPERTY_FILE = "test.properties";
     private static final String NON_EXISTING_TEST_RESOURCE_FILE = "non-existing-test.txt";
 
     private static final String TEST_OBJECT_JSON_RESOURCE_FILE = "test-object.json";
@@ -21,6 +23,11 @@ public class ResourceFileTest {
 
     private static final String TEST_OBJECT_VALUE_1 = "testValue1";
     private static final String TEST_OBJECT_VALUE_2 = "testValue2";
+
+    private static final String TEST_PROPERTY_VALUE_1 = "value1";
+    private static final String TEST_PROPERTY_VALUE_2 = "value2";
+    private static final String TEST_PROPERTY_NAME_1 = "property1";
+    private static final String TEST_PROPERTY_NAME_2 = "property2";
 
     @Test
     public void readResourceFileAsStringTest() throws IOException {
@@ -49,6 +56,19 @@ public class ResourceFileTest {
     @Test(expectedExceptions = FileNotFoundException.class)
     public void noResourceFileNotFoundExceptionOnReadContentTest() throws IOException {
         new ResourceFile(NON_EXISTING_TEST_RESOURCE_FILE).content();
+    }
+
+    @Test(expectedExceptions = FileNotFoundException.class)
+    public void noResourceFileNotFoundExceptionOnPropertiesTest() throws IOException {
+        new ResourceFile(NON_EXISTING_TEST_RESOURCE_FILE).properties();
+    }
+
+    @Test
+    public void propertiesTest() throws IOException {
+        ResourceFile propertiesFile = new ResourceFile(TEST_RESOURCE_PROPERTY_FILE);
+        Properties properties = propertiesFile.properties();
+        assertEquals(properties.getProperty(TEST_PROPERTY_NAME_1), TEST_PROPERTY_VALUE_1);
+        assertEquals(properties.getProperty(TEST_PROPERTY_NAME_2), TEST_PROPERTY_VALUE_2);
     }
 
     @Test
