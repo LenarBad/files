@@ -24,8 +24,11 @@
 package io.lenar.files;
 
 import com.google.gson.Gson;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -62,6 +65,26 @@ public abstract class BaseFile {
 
     public <T> List<T> fromJsonAsList(Class<T[]> clazz) throws IOException {
         return Arrays.asList(new Gson().fromJson(content(), clazz));
+    }
+
+    public <T> T fromYaml(Class<T> clazz) throws IOException {
+        try (InputStream inputStream = getStream();) {
+            return new Yaml(new Constructor(clazz)).load(inputStream);
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
+    public <T> List<T> fromYamlAsList(Class<T> clazz) throws IOException {
+        try (InputStream inputStream = getStream();) {
+            List<T> list = new ArrayList<>();
+            new Yaml(new Constructor(clazz)).loadAll(inputStream)
+                    .iterator()
+                    .forEachRemaining(item -> list.add((T) item));
+            return list;
+        } catch (IOException e) {
+            throw e;
+        }
     }
 
     private String readContent() throws IOException {
