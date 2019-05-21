@@ -13,7 +13,7 @@
     <dependency>
         <groupId>io.lenar</groupId>
         <artifactId>files</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
     </dependency>
 ```
 
@@ -42,7 +42,12 @@ UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
 ```java
 String content = file.content();
 List<String> lines = file.lines();
+
 Book book = file.fromJson(Book.class);
 List<Book> books = file.fromJsonAsList(Book[].class);
+
+Book book = file.fromYaml(Book.class);
+List<Book> books = file.fromYamlAsList(Book.class);
+
 Properties properties = file.properties();
 ```
