@@ -159,6 +159,12 @@
             <version>6.13.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.24</version>
+        </dependency>
+
     </dependencies>
 
 </project>

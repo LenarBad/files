@@ -18,6 +18,9 @@ public class ResourceFileTest {
     private static final String TEST_OBJECT_JSON_RESOURCE_FILE = "test-object.json";
     private static final String TEST_OBJECT_LIST_JSON_RESOURCE_FILE = "test-object-list.json";
 
+    private static final String TEST_OBJECT_YAML_RESOURCE_FILE = "test-object.yaml";
+    private static final String TEST_OBJECT_LIST_YAML_RESOURCE_FILE = "test-object-list.yaml";
+
     private static final String TEST_RESOURCE_FILE_LINE_1 = "test line 1";
     private static final String TEST_RESOURCE_FILE_LINE_2 = "test line 2";
 
@@ -89,6 +92,24 @@ public class ResourceFileTest {
         assertEquals(list.get(1).getValue(), TEST_OBJECT_VALUE_2);
     }
 
+    @Test
+    public void fromYamlToObjectTest() throws IOException {
+        ResourceFile yamlResourceFile = new ResourceFile(TEST_OBJECT_YAML_RESOURCE_FILE);
+        TestObject testObject = yamlResourceFile.fromYaml(TestObject.class);
+        assertNotNull(testObject);
+        assertEquals(testObject.getValue(), TEST_OBJECT_VALUE_1);
+    }
+
+    @Test
+    public void fromYamlToListOfObjects() throws IOException {
+        ResourceFile yamlResourceFile = new ResourceFile(TEST_OBJECT_LIST_YAML_RESOURCE_FILE);
+        List<TestObject> list = yamlResourceFile.fromYamlAsList(TestObject.class);
+        assertNotNull(list);
+        assertEquals(list.size(), 2);
+        assertEquals(list.get(0).getValue(), TEST_OBJECT_VALUE_1);
+        assertEquals(list.get(1).getValue(), TEST_OBJECT_VALUE_2);
+    }
+
     @Test(expectedExceptions = FileNotFoundException.class)
     public void noResourceFileNotFoundExceptionOnFromJsonAsListTest() throws IOException {
         new ResourceFile(NON_EXISTING_TEST_RESOURCE_FILE).fromJsonAsList(TestObject[].class);
@@ -97,5 +118,15 @@ public class ResourceFileTest {
     @Test(expectedExceptions = FileNotFoundException.class)
     public void noResourceFileNotFoundExceptionOnFromJsonTest() throws IOException {
         new ResourceFile(NON_EXISTING_TEST_RESOURCE_FILE).fromJson(TestObject.class);
+    }
+
+    @Test(expectedExceptions = FileNotFoundException.class)
+    public void noResourceFileNotFoundExceptionOnFromYamlAsListTest() throws IOException {
+        new ResourceFile(NON_EXISTING_TEST_RESOURCE_FILE).fromYamlAsList(TestObject.class);
+    }
+
+    @Test(expectedExceptions = FileNotFoundException.class)
+    public void noResourceFileNotFoundExceptionOnFromYamlTest() throws IOException {
+        new ResourceFile(NON_EXISTING_TEST_RESOURCE_FILE).fromYaml(TestObject.class);
     }
 }
