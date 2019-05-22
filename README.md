@@ -5,6 +5,7 @@
 * [Maven dependency](#maven-dependency)
 * [Resources folder files - ResourceFile](#resources-folder-files---resourcefile)
 * [Regular files in File System - UserFiles, UserHomeFile](#regular-files-in-file-system---userfiles-userhomefile)
+* [Network Resources](#network-resources)
 * [Read file examples](#read-file-examples)
   
 ## Maven dependency
