@@ -13,7 +13,7 @@
     <dependency>
         <groupId>io.lenar</groupId>
         <artifactId>files</artifactId>
-        <version>1.5.0</version>
+        <version>1.6.0</version>
     </dependency>
 ```
 
@@ -35,6 +35,14 @@ UserFile file = new UserFile("c:/myfiles/myfile.txt");
 
 ```java
 UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
+```
+
+## Network resource
+
+It can be a file somewhere in the Internet or other resources accessible with urls.
+
+```java
+NetworkResource file = new NetworkResource("https://github.com/LenarBad/files")
 ```
 
 ## Read file examples
