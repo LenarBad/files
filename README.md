@@ -40,7 +40,7 @@ UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
 
 ## Network resources
 
-It can be a file somewhere in the Internet or other resources accessible with urls.
+It can be a file somewhere in the Internet or other resources accessible through urls.
 
 ```java
 NetworkResource file = new NetworkResource("https://github.com/LenarBad/files")
