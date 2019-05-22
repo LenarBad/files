@@ -23,37 +23,20 @@
  */
 package io.lenar.files;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
-/**
- * Implements the functionality for reading files in any location in the file system
- */
-public class UserFile extends Resource {
+public class NetworkResource extends Resource {
 
-    private final File file;
+    private String stringUrl;
 
-    public UserFile(String fullFileName) {
-        this.file = getFile(fullFileName);
-    }
-
-    public UserFile(String path, String fileName) {
-        this.file = getFile(path, fileName);
+    public NetworkResource(String stringUrl) {
+        this.stringUrl = stringUrl;
     }
 
     @Override
-    protected InputStream getStream() throws FileNotFoundException {
-        return new FileInputStream(this.file);
+    protected InputStream getStream() throws IOException {
+        return new URL(stringUrl).openStream();
     }
-
-    private File getFile(String fullFileName) {
-        return new File(fullFileName).getAbsoluteFile();
-    }
-
-    private File getFile(String parent, String child) {
-        return new File(parent, child).getAbsoluteFile();
-    }
-
 }
