@@ -31,7 +31,7 @@ import java.io.InputStream;
 /**
  * Implements the functionality for reading files in any location in the file system
  */
-public class UserFile extends BaseFile {
+public class UserFile extends Resource {
 
     private final File file;
 

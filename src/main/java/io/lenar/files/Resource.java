@@ -36,14 +36,14 @@ import java.util.stream.Collectors;
 
 /**
  * Abstract
- * BaseFile provides the functionality for reading file content as String or list of String
+ * Resource provides the functionality for reading file content as String or list of String
  *
  * Requires InputStream getStream() to be implemented - the implementation depends on
  * the file location (in the resources folder or not)
  */
-public abstract class BaseFile {
+public abstract class Resource {
 
-    protected abstract InputStream getStream() throws FileNotFoundException;
+    protected abstract InputStream getStream() throws IOException;
 
     public String content() throws IOException {
         return readContent();
