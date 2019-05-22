@@ -36,10 +36,10 @@ import java.util.stream.Collectors;
 
 /**
  * Abstract
- * Resource provides the functionality for reading file content as String or list of String
+ * Resource provides the functionality for reading resource's content
  *
  * Requires InputStream getStream() to be implemented - the implementation depends on
- * the file location (in the resources folder or not)
+ * the file/resource location/type
  */
 public abstract class Resource {
 
