@@ -37,7 +37,7 @@ UserFile file = new UserFile("c:/myfiles/myfile.txt");
 UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
 ```
 
-## Network resource
+## Network resources
 
 It can be a file somewhere in the Internet or other resources accessible with urls.
 
