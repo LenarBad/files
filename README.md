@@ -1,5 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.lenar/files.svg)](https://maven-badges.herokuapp.com/maven-central/io.lenar/files)
-
+![Build Status](https://travis-ci.com/LenarBad/files.svg?branch=master)
 # Easy Files
 
 * [Maven dependency](#maven-dependency)
