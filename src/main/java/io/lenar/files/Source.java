@@ -36,12 +36,12 @@ import java.util.stream.Collectors;
 
 /**
  * Abstract
- * Resource provides the functionality for reading resource's content
+ * Source provides the functionality for reading resource's content
  *
  * Requires InputStream getStream() to be implemented - the implementation depends on
  * the file/resource location/type
  */
-public abstract class Resource {
+public abstract class Source {
 
     protected abstract InputStream getStream() throws IOException;
 
