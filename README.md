@@ -43,7 +43,7 @@ UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
 It can be a file somewhere in the Internet or other resources accessible through urls.
 
 ```java
-NetworkResource file = new NetworkSource("https://github.com/LenarBad/files")
+NetworkSource file = new NetworkSource("https://github.com/LenarBad/files")
 ```
 
 ## Read file examples
