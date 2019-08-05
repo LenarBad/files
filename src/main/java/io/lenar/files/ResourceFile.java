@@ -29,7 +29,7 @@ import java.io.InputStream;
 /**
  * Implements the functionality for reading files in resources folder
  */
-public class ResourceFile extends Resource {
+public class ResourceFile extends Source {
 
     private final String fileName;
 

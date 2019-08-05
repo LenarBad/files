@@ -33,7 +33,7 @@ import java.util.Properties;
 
 import static org.testng.Assert.*;
 
-public class NetworkResourceTest {
+public class NetworkSourceTest {
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/LenarBad/files/master/src/test/resources/";
 
@@ -62,7 +62,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void readUrlFileAsStringTest() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_RESOURCE_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_RESOURCE_FILE);
         String content = file.content();
         assertNotNull(content);
         assertTrue(content.contains(TEST_RESOURCE_FILE_LINE_1));
@@ -71,7 +71,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void readUrlFileAsLinesTest() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_RESOURCE_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_RESOURCE_FILE);
         List<String> lines = file.lines();
         assertNotNull(lines);
         assertFalse(lines.isEmpty());
@@ -81,7 +81,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void propertiesTest() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_RESOURCE_PROPERTY_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_RESOURCE_PROPERTY_FILE);
         Properties properties = file.properties();
         assertEquals(properties.getProperty(TEST_PROPERTY_NAME_1), TEST_PROPERTY_VALUE_1);
         assertEquals(properties.getProperty(TEST_PROPERTY_NAME_2), TEST_PROPERTY_VALUE_2);
@@ -89,7 +89,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void fromJsonToObjectTest() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_OBJECT_JSON_RESOURCE_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_OBJECT_JSON_RESOURCE_FILE);
         TestObject testObject = file.fromJson(TestObject.class);
         assertNotNull(testObject);
         assertEquals(testObject.getValue(), TEST_OBJECT_VALUE_1);
@@ -97,7 +97,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void fromJsonToListOfObjects() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_OBJECT_LIST_JSON_RESOURCE_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_OBJECT_LIST_JSON_RESOURCE_FILE);
         List<TestObject> list = file.fromJsonAsList(TestObject[].class);
         assertNotNull(list);
         assertEquals(list.size(), 2);
@@ -107,7 +107,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void fromYamlToObjectTest() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_OBJECT_YAML_RESOURCE_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_OBJECT_YAML_RESOURCE_FILE);
         TestObject testObject = file.fromYaml(TestObject.class);
         assertNotNull(testObject);
         assertEquals(testObject.getValue(), TEST_OBJECT_VALUE_1);
@@ -115,7 +115,7 @@ public class NetworkResourceTest {
 
     @Test(enabled = false)
     public void fromYamlToListOfObjects() throws IOException {
-        NetworkResource file = new NetworkResource(BASE_URL + TEST_OBJECT_LIST_YAML_RESOURCE_FILE);
+        NetworkSource file = new NetworkSource(BASE_URL + TEST_OBJECT_LIST_YAML_RESOURCE_FILE);
         List<TestObject> list = file.fromYamlAsList(TestObject.class);
         assertNotNull(list);
         assertEquals(list.size(), 2);
@@ -125,72 +125,72 @@ public class NetworkResourceTest {
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnReadLinesTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).lines();
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).lines();
     }
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnReadContentTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).content();
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).content();
     }
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnPropertiesTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).properties();
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).properties();
     }
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnFromJsonAsListTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromJsonAsList(TestObject[].class);
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromJsonAsList(TestObject[].class);
     }
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnFromJsonTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromJson(TestObject.class);
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromJson(TestObject.class);
     }
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnFromYamlAsListTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromYamlAsList(TestObject.class);
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromYamlAsList(TestObject.class);
     }
 
     @Test(expectedExceptions = FileNotFoundException.class, enabled = false)
     public void noUrlFileNotFoundExceptionOnFromYamlTest() throws IOException {
-        new NetworkResource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromYaml(TestObject.class);
+        new NetworkSource(BASE_URL + NON_EXISTING_TEST_RESOURCE_FILE).fromYaml(TestObject.class);
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnReadLinesTest() throws IOException {
-        new NetworkResource(INVALID_URL).lines();
+        new NetworkSource(INVALID_URL).lines();
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnReadContentTest() throws IOException {
-        new NetworkResource(INVALID_URL).content();
+        new NetworkSource(INVALID_URL).content();
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnPropertiesTest() throws IOException {
-        new NetworkResource(INVALID_URL).properties();
+        new NetworkSource(INVALID_URL).properties();
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnFromJsonAsListTest() throws IOException {
-        new NetworkResource(INVALID_URL).fromJsonAsList(TestObject[].class);
+        new NetworkSource(INVALID_URL).fromJsonAsList(TestObject[].class);
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnFromJsonTest() throws IOException {
-        new NetworkResource(INVALID_URL).fromJson(TestObject.class);
+        new NetworkSource(INVALID_URL).fromJson(TestObject.class);
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnFromYamlAsListTest() throws IOException {
-        new NetworkResource(INVALID_URL).fromYamlAsList(TestObject.class);
+        new NetworkSource(INVALID_URL).fromYamlAsList(TestObject.class);
     }
 
     @Test(expectedExceptions = MalformedURLException.class)
     public void invalidUrlMalformedURLExceptionOnFromYamlTest() throws IOException {
-        new NetworkResource(INVALID_URL).fromYaml(TestObject.class);
+        new NetworkSource(INVALID_URL).fromYaml(TestObject.class);
     }
 
 }

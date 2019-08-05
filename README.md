@@ -1,5 +1,5 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.lenar/files.svg)](https://maven-badges.herokuapp.com/maven-central/io.lenar/files)
-
+![Build Status](https://travis-ci.com/LenarBad/files.svg?branch=master)
 # Easy Files
 
 * [Maven dependency](#maven-dependency)
@@ -14,7 +14,7 @@
     <dependency>
         <groupId>io.lenar</groupId>
         <artifactId>files</artifactId>
-        <version>1.6.0</version>
+        <version>1.6.1</version>
     </dependency>
 ```
 
@@ -38,12 +38,12 @@ UserFile file = new UserFile("c:/myfiles/myfile.txt");
 UserHomeFile file = new UserHomeFile("my-user-home-test.txt");
 ```
 
-## Network resources
+## Network sources
 
 It can be a file somewhere in the Internet or other resources accessible through urls.
 
 ```java
-NetworkResource file = new NetworkResource("https://github.com/LenarBad/files")
+NetworkResource file = new NetworkSource("https://github.com/LenarBad/files")
 ```
 
 ## Read file examples

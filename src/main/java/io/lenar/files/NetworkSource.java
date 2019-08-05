@@ -27,11 +27,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-public class NetworkResource extends Resource {
+public class NetworkSource extends Source {
 
     private String stringUrl;
 
-    public NetworkResource(String stringUrl) {
+    public NetworkSource(String stringUrl) {
         this.stringUrl = stringUrl;
     }
 
