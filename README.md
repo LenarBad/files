@@ -1,7 +1,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/io.lenar/files.svg)](https://maven-badges.herokuapp.com/maven-central/io.lenar/files)
 ![Build Status](https://travis-ci.com/LenarBad/files.svg?branch=master)
-[![Hits-of-Code](https://hitsofcode.com/github/lenarbad/files)](https://hitsofcode.com/view/github/lenarbad/files)
-
+[![Hits of Code](https://hitsofcode.com/github/lenarbad/files)](https://hitsofcode.com/view/github/lenarbad/files)
+[![Lines of Code](https://tokei.rs/b1/github/lenarbad/files)](https://github.com/lenarbad/files)
 
 # Easy Files
 
