@@ -3,6 +3,8 @@
 [![Hits of Code](https://hitsofcode.com/github/lenarbad/files)](https://hitsofcode.com/view/github/lenarbad/files)
 [![Lines of Code](https://tokei.rs/b1/github/lenarbad/files)](https://github.com/lenarbad/files)
 
+![GitHub](https://img.shields.io/github/license/lenarbad/files)
+
 # Easy Files
 
 * [Maven dependency](#maven-dependency)
