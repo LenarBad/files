@@ -36,13 +36,17 @@ import java.util.stream.Collectors;
 
 /**
  * Abstract
- * Source provides the functionality for reading resource's content
+ * Source provides the functionality for reading source's content
  *
  * Requires InputStream getStream() to be implemented - the implementation depends on
- * the file/resource location/type
+ * the source location/type
  */
 public abstract class Source {
 
+    /**
+     * Returns InputStream for accessing source's content
+     * @throws IOException
+     */
     protected abstract InputStream getStream() throws IOException;
 
     public String content() throws IOException {

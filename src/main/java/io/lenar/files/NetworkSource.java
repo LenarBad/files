@@ -27,6 +27,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+/**
+ * NetworkSource implements getStream() for accessing network sources
+ *
+ */
 public class NetworkSource extends Source {
 
     private String stringUrl;
